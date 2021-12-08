@@ -114,6 +114,9 @@ button:hover{
 button:active{
     opacity: 0.7;
 }
+input{
+    padding-left: 4px;
+}
 .currency-container{
     text-align: center;
     padding: 10px;
@@ -136,4 +139,7 @@ button:active{
 .arrow-img{
     display: block;
     margin:  auto;
+}
+input::placeholder{
+    margin-left: 10px;
 }
