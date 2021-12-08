@@ -1,5 +1,6 @@
-const dolar = 5.2
-const euro = 7
+const dolar = 5.54
+const euro = 6.28
+const bitcoin = 0.0000036
 const conversion_type = document.getElementById('converting')
 const button = document.getElementById('button')
 const paragraph = document.getElementById('converted_value')
@@ -21,8 +22,9 @@ const convertValues = (type) => {
             style: 'currency',
             currency: 'EUR',
           }).format(converted_euro);
+        }
 
-    } else {
+    if(type === "US$ Dólar americano" || conversion_type.value === "US$ Dólar americano"){
         const converted_dolar = real_value / dolar
 
         real.innerHTML = new Intl.NumberFormat('pt-BR', {
@@ -35,6 +37,18 @@ const convertValues = (type) => {
             currency: 'USD',
           }).format(converted_dolar);
     }
+
+    if(type === "Bitcoin" || conversion_type.value === "Bitcoin"){
+        const converted_bitcoin = real_value * bitcoin
+
+        real.innerHTML = new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          }).format(real_value);
+
+          paragraph.innerHTML = `${converted_bitcoin}`
+    }
+
 }
 
 button.addEventListener('click', convertValues)
@@ -52,6 +66,11 @@ conversion_type.addEventListener('change', () => {
         currency_name.innerHTML = `US$ Dólar americano`
 
         img_currency.setAttribute('src', 'usa.png')
+
+    }else if(conversion_type.value === "Bitcoin"){
+        currency_name.innerHTML = 'Bitcoin'
+
+        img_currency.setAttribute('src', 'bitcoin.png')
     }
     convertValues(conversion_type.value)
 })
